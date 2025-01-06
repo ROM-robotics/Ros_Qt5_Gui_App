@@ -22,6 +22,7 @@
 #include "logger/logger.h"
 #include "ui_mainwindow.h"
 
+
 #include "widgets/speed_ctrl.h"
 using namespace ads;
 MainWindow::MainWindow(QWidget *parent)
@@ -122,95 +123,175 @@ void MainWindow::setupUi() {
   horizontalLayout_tools->setObjectName(
       QString::fromUtf8(" horizontalLayout_tools"));
 
-  QToolButton *reloc_btn = new QToolButton();
+  reloc_btn = new QToolButton();
   reloc_btn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+  reloc_btn->setFixedWidth(200);
   reloc_btn->setStyleSheet(
       "QToolButton {"
       "   border: none;"
       "   background-color: transparent;"
+      "   border-radius: 25;"
       "}"
       "QToolButton:hover {"
-      "   background-color: lightblue;"
+      "   background-color: #e3e8e4;"
       "}"
       "QToolButton:pressed {"
-      "   background-color: lightblue;"
+      "   background-color: #d0f7d2;"
       "}");
 
   QIcon icon4;
   icon4.addFile(QString::fromUtf8(":/images/reloc2.svg"),
                 QSize(64, 64), QIcon::Normal, QIcon::Off);
   reloc_btn->setIcon(icon4);
-  reloc_btn->setText("Regulating");
+  reloc_btn->setText("Relocate");
   // reloc_btn->setMaximumSize(QSize(54, 54));
   reloc_btn->setIconSize(QSize(32, 32));
   horizontalLayout_tools->addWidget(reloc_btn);
   QIcon icon5;
   icon5.addFile(QString::fromUtf8(":/images/edit.svg"),
                 QSize(64, 64), QIcon::Normal, QIcon::Off);
-  QToolButton *edit_map_btn = new QToolButton();
+  edit_map_btn = new QToolButton();
   edit_map_btn->setIcon(icon5);
   edit_map_btn->setText("Edit map");
   // edit_map_btn->setMaximumSize(QSize(54, 54));
   edit_map_btn->setIconSize(QSize(32, 32));
   edit_map_btn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+  edit_map_btn->setFixedWidth(200);
   edit_map_btn->setStyleSheet(
       "QToolButton {"
       "   border: none;"
       "   background-color: transparent;"
+      "   border-radius: 25;"
       "}"
       "QToolButton:hover {"
-      "   background-color: lightblue;"
+      "   background-color: #e3e8e4;"
       "}"
       "QToolButton:pressed {"
-      "   background-color: lightblue;"
+      "   background-color: #d0f7d2;"
       "}");
   horizontalLayout_tools->addWidget(edit_map_btn);
 
   QIcon icon6;
   icon6.addFile(QString::fromUtf8(":/images/open.svg"),
                 QSize(64, 64), QIcon::Normal, QIcon::Off);
-  QToolButton *open_map_btn = new QToolButton();
+  open_map_btn = new QToolButton();
   open_map_btn->setIcon(icon6);
   open_map_btn->setText("Open map");
   // open_map_btn->setMaximumSize(QSize(54, 54));
   open_map_btn->setIconSize(QSize(32, 32));
   open_map_btn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+  open_map_btn->setFixedWidth(200);
   open_map_btn->setStyleSheet(
       "QToolButton {"
       "   border: none;"
       "   background-color: transparent;"
+      "   border-radius: 25;"
       "}"
       "QToolButton:hover {"
-      "   background-color: lightblue;"
+      "   background-color: #e3e8e4;"
       "}"
       "QToolButton:pressed {"
-      "   background-color: lightblue;"
+      "   background-color: #d0f7d2;"
       "}");
   horizontalLayout_tools->addWidget(open_map_btn);
 
   QIcon icon7;
   icon7.addFile(QString::fromUtf8(":/images/save.svg"),
                 QSize(64, 64), QIcon::Normal, QIcon::Off);
-  QToolButton *save_map_btn = new QToolButton();
+  save_map_btn = new QToolButton();
   save_map_btn->setIcon(icon7);
   save_map_btn->setText("Save map");
   // save_map_btn->setMaximumSize(QSize(54, 54));
   save_map_btn->setIconSize(QSize(32, 32));
   save_map_btn->setToolButtonStyle(Qt::ToolButtonTextUnderIcon);
+  save_map_btn->setFixedWidth(200);
   save_map_btn->setStyleSheet(
       "QToolButton {"
       "   border: none;"
       "   background-color: transparent;"
+      "   border-radius: 25;"
       "}"
       "QToolButton:hover {"
-      "   background-color: lightblue;"
+      "   background-color: #e3e8e4;"
       "}"
       "QToolButton:pressed {"
-      "   background-color: lightblue;"
+      "   background-color: #d0f7d2;"
       "}");
   horizontalLayout_tools->addWidget(save_map_btn);
+
   horizontalLayout_tools->addItem(
       new QSpacerItem(1, 1, QSizePolicy::Expanding, QSizePolicy::Minimum));
+  center_layout->addLayout(horizontalLayout_tools);
+  //// ROM ADD
+  navigation_btn_ = new QToolButton();
+  navigation_btn_->setText("Navigation");
+  navigation_btn_->setFixedWidth(200);
+  navigation_btn_->setStyleSheet(
+      "QToolButton {"
+      "   border: 2px solid darkblue;"
+      "   background-color: #d0f7d2;"
+      "   border-radius: 25px;"
+      "   padding: 5px 10px;" 
+      "}"
+      "QToolButton:pressed {"
+      "background-color: #d0f7d2;"
+      "}");
+  horizontalLayout_tools->addWidget(navigation_btn_);
+
+  mapping_btn_ = new QToolButton();
+  mapping_btn_->setText("Mapping");
+  mapping_btn_->setFixedWidth(200);
+  mapping_btn_->setStyleSheet(
+      "QToolButton {"
+      "   border: none;"
+      "   background-color: transparent;"
+      "   border-radius: 25px;"
+      "   padding: 5px 10px;" 
+      "}"
+      "QToolButton:hover {"
+      "   border: 1px dotted darkblue;"
+      "   background-color:  #e3e8e4;"
+      "   border-radius: 25px;"
+      "   padding: 5px 10px;" 
+      "}"
+      "QToolButton:pressed {"
+      "background-color: #d0f7d2;"
+      "}");
+  horizontalLayout_tools->addWidget(mapping_btn_);
+
+  remapping_btn_ = new QToolButton();
+  remapping_btn_->setText("Remapping");
+  remapping_btn_->setFixedWidth(200);
+  remapping_btn_->setStyleSheet(
+      "QToolButton {"
+      "   border: none;"
+      "   background-color: transparent;"
+      "   border-radius: 25px;"
+      "   padding: 5px 10px;" 
+      "}"
+      "QToolButton:hover {"
+      "   border: 1px dotted darkblue;"
+      "   background-color:  #e3e8e4;"
+      "   border-radius: 25px;"
+      "   padding: 5px 10px;" 
+      "}"
+      "QToolButton:pressed {"
+      "background-color: #d0f7d2;"
+      "}");
+  horizontalLayout_tools->addWidget(remapping_btn_);
+
+  connect(mapping_btn_, &QPushButton::clicked, this, &MainWindow::sendMappingMode);
+  connect(navigation_btn_, &QPushButton::clicked, this, &MainWindow::sendNavigationMode);
+  connect(remapping_btn_, &QPushButton::clicked, this, &MainWindow::sendRemappingMode);
+
+  open_map_btn->setVisible(false);
+  save_map_btn->setVisible(false);
+  edit_map_btn->setVisible(false);
+  //reloc_btn->setVisible(true);
+
+  /// ROM 
+  horizontalLayout_tools->addItem(
+      new QSpacerItem(40, 1, QSizePolicy::Fixed, QSizePolicy::Fixed));
   center_layout->addLayout(horizontalLayout_tools);
 
   ///////////////////////////////////////////////////////////////////电池电量
@@ -257,6 +338,7 @@ void MainWindow::setupUi() {
 
   horizontalLayout_tools->addWidget(label_power_);
   SlotSetBatteryStatus(0, 0);
+  
   //////////////////////////////////////////////////////////////编辑地图工具栏
   QWidget *tools_edit_map_widget = new QWidget();
 
@@ -642,10 +724,11 @@ void MainWindow::setupUi() {
       LOG_INFO("Cancel the map");
     }
   });
-  connect(edit_map_btn, &QToolButton::clicked, [this, tools_edit_map_widget, edit_map_btn]() {
+  // ROM EDIT , edit_map_btn ] () {
+  connect(edit_map_btn, &QToolButton::clicked, [this, tools_edit_map_widget]() {
     if (edit_map_btn->text() == "Edit map") {
       display_manager_->SetEditMapMode(Display::MapEditMode::kNormal);
-      edit_map_btn->setText("End edit");
+      this->edit_map_btn->setText("End edit");
       tools_edit_map_widget->show();
     } else {
       display_manager_->SetEditMapMode(Display::MapEditMode::kStop);
@@ -741,4 +824,161 @@ void MainWindow::updateOdomInfo(RobotState state) {
 void MainWindow::SlotSetBatteryStatus(double percent, double voltage) {
   battery_bar_->setValue(percent);
   label_power_->setText(QString::number(voltage, 'f', 2) + "V");
+}
+
+// ROM ADD
+void MainWindow::sendMappingMode() {
+
+    if( current_mode_ == "mapping" ) {
+        return;
+    } else 
+    {
+        current_mode_ = "mapping";
+
+        //auto msg = std_msgs::msg::String();
+        //msg.data = "mapping";
+
+        //mode_publisher_->publish(msg);
+        //ui->statusLabel->setText("Changing Mapping Mode...");
+        this->mapping_btn_->setStyleSheet(
+      "QToolButton {"
+      "   border: 2px solid darkblue;"
+      "   background-color: #d0f7d2;"
+      "   border-radius: 25;"
+      "   padding: 5px 10px;" 
+      "}");
+            this->navigation_btn_->setStyleSheet(
+      "QToolButton {"
+      "   border: none;"
+      "   background-color: none;"
+      "   border-radius: 25;"
+      "}"
+      "QToolButton:hover {"
+      "   border: 1px dotted darkblue;"
+      "   background-color:  #e3e8e4;"
+      "   border-radius: 25px;"
+      "   padding: 5px 10px;" 
+      "}");
+            this->remapping_btn_->setStyleSheet(
+      "QToolButton {"
+      "   border: none;"
+      "   background-color: none;"
+      "   border-radius: 25;"
+      "}"
+      "QToolButton:hover {"
+      "   border: 1px dotted darkblue;"
+      "   background-color:  #e3e8e4;"
+      "   border-radius: 25px;"
+      "   padding: 5px 10px;" 
+      "}");
+
+      open_map_btn->setVisible(true);
+      save_map_btn->setVisible(true);
+      edit_map_btn->setVisible(true);
+      reloc_btn->setVisible(false); 
+    }
+}
+
+
+void MainWindow::sendNavigationMode() {
+    if( current_mode_ == "navi" ) {
+        return;
+    } else 
+    {
+        current_mode_ = "navi";
+
+        //auto msg = std_msgs::msg::String();
+        //msg.data = "navi";
+
+        //mode_publisher_->publish(msg);
+        //ui->statusLabel->setText("Changing Navigation Mode...");
+        this->mapping_btn_->setStyleSheet(
+      "QToolButton {"
+      "   border: none;"
+      "   background-color: none;"
+      "   border-radius: 25;"
+      "}"
+      "QToolButton:hover {"
+      "   border: 1px dotted darkblue;"
+      "   background-color:  #e3e8e4;"
+      "   border-radius: 25px;"
+      "   padding: 5px 10px;" 
+      "}");
+            this->navigation_btn_->setStyleSheet(
+      "QToolButton {"
+      "   border: 2px solid darkblue;"
+      "   background-color: #d0f7d2;"
+      "   border-radius: 25;"
+      "   padding: 5px 10px;" 
+      "}");
+            this->remapping_btn_->setStyleSheet(
+      "QToolButton {"
+      "   border: none;"
+      "   background-color: none;"
+      "   border-radius: 25;"
+      "}"
+      "QToolButton:hover {"
+      "   border: 1px dotted darkblue;"
+      "   background-color:  #e3e8e4;"
+      "   border-radius: 25px;"
+      "   padding: 5px 10px;" 
+      "}");
+
+      open_map_btn->setVisible(false);
+      save_map_btn->setVisible(false);
+      edit_map_btn->setVisible(false);
+      reloc_btn->setVisible(true);
+    }
+}
+
+
+void MainWindow::sendRemappingMode() {
+    if(current_mode_ == "remapping") {
+        return;
+    } else 
+    {
+        current_mode_ = "remapping";
+    
+        //auto msg = std_msgs::msg::String();
+        //msg.data = "remapping";
+
+        //mode_publisher_->publish(msg);
+        //ui->statusLabel->setText("Changing Remapping Mode...");
+        this->mapping_btn_->setStyleSheet(
+      "QToolButton {"
+      "   border: none;"
+      "   background-color: none;"
+      "   border-radius: 25;"
+      "}"
+      "QToolButton:hover {"
+      "   border: 1px dotted darkblue;"
+      "   background-color:  #e3e8e4;"
+      "   border-radius: 25px;"
+      "   padding: 5px 10px;" 
+      "}");
+            this->navigation_btn_->setStyleSheet(
+      "QToolButton {"
+      "   border: none;"
+      "   background-color: none;"
+      "   border-radius: 25;"
+      "}"
+      "QToolButton:hover {"
+      "   border: 1px dotted darkblue;"
+      "   background-color:  #e3e8e4;"
+      "   border-radius: 25px;"
+      "   padding: 5px 10px;" 
+      "}");
+            this->remapping_btn_->setStyleSheet(
+      "QToolButton {"
+      "   border: 2px solid darkblue;"
+      "   background-color: #d0f7d2;"
+      "   border-radius: 25;"
+      "   padding: 5px 10px;" 
+      "}");
+
+      open_map_btn->setVisible(true);
+      save_map_btn->setVisible(true);
+      edit_map_btn->setVisible(true);
+      reloc_btn->setVisible(false);
+    }
 }

@@ -33,6 +33,7 @@
 #include "widgets/set_pose_widget.h"
 #include "widgets/speed_ctrl.h"
 #include "widgets/ratio_layouted_frame.h"
+
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class MainWindow;
@@ -53,6 +54,13 @@ class MainWindow : public QMainWindow {
   void RestoreState();
   void SlotSetBatteryStatus(double percent, double voltage);
   void SlotRecvImage(const std::string &location, std::shared_ptr<cv::Mat> data);
+
+  // ROM ADD
+  void sendMappingMode();
+  void sendNavigationMode();
+  void sendRemappingMode();
+ private:
+  std::string current_mode_ = "navi";
 
  protected:
   virtual void closeEvent(QCloseEvent *event) override;
@@ -77,6 +85,17 @@ class MainWindow : public QMainWindow {
   QLabel *label_power_;
   ads::CDockAreaWidget *center_docker_area_;
   std::map<std::string, RatioLayoutedFrame *> image_frame_map_;
+
+  // ROM ADD
+  QToolButton *mapping_btn_;
+  QToolButton *navigation_btn_;
+  QToolButton *remapping_btn_;
+
+  QToolButton *reloc_btn;
+  QToolButton *edit_map_btn;
+  QToolButton *open_map_btn;
+  QToolButton *save_map_btn;
+  
  signals:
   void OnRecvChannelData(const MsgId &id, const std::any &data);
   
