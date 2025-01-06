@@ -14,10 +14,10 @@ NavGoalTableView::NavGoalTableView(QWidget *_parent_widget)
   table_model_ = new QStandardItemModel();
   setModel(table_model_);
   QStringList table_h_headers;
-  table_h_headers << "点位名"
-                  << "任务状态"
-                  << "删除"
-                  << "运行";
+  table_h_headers << "name"
+                  << "status"
+                  << "delete"
+                  << "run";
   QHeaderView *headerView = new QHeaderView(Qt::Horizontal);
   headerView->setSectionResizeMode(QHeaderView::ResizeToContents);
   headerView->setSelectionBehavior(QAbstractItemView::SelectRows);
@@ -35,9 +35,9 @@ NavGoalTableView::~NavGoalTableView() {}
 
 void NavGoalTableView::onItemChanged(QStandardItem *item) {
   if (item->column() == 0) {
-    qDebug() << "点位名: " << item->text();
+    qDebug() << "Point name: " << item->text();
   } else if (item->column() == 2) {
-    qDebug() << "任务状态: " << item->checkState();
+    qDebug() << "Mission status: " << item->checkState();
   }
 }
 void NavGoalTableView::UpdateTopologyMap(const TopologyMap &_topology_map) {
