@@ -1,10 +1,3 @@
-<!--
- * @Author: chengyangkj chengyangkj@qq.com
- * @Date: 2023-09-02 07:23:43
- * @LastEditors: chengyangkj chengyangkj@qq.com
- * @LastEditTime: 2023-10-06 14:03:03
- * @FilePath: /ROS2_Qt5_Gui_App/README.md
--->
 简体中文 | [English](./README_en.md)
 *轻量级ROS1/ROS2移动机器人人机交互软件*
 
